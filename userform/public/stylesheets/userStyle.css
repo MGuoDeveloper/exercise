@@ -1,0 +1,79 @@
+body {
+  padding: 2%;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: url('/images/bg.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.errormsg {
+  font: 12px "Times New Roman", Times, serif;
+  color: #b92c28;
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+a {
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #ac2925;
+  padding-top: 20px;
+  float: right;
+}
+
+.padding-top-5 {
+  padding-top: 5%;
+}
+
+.padding-top-10 {
+  padding-top: 10px;
+}
+
+#right-panel {
+  width: 35%;
+  float: right;
+  height: auto;
+  min-width: 500px;
+}
+
+#left-panel {
+  width: 35%;
+  float: left;
+  height: auto;
+}
+
+@media only screen and (max-width: 991px) {
+  #right-panel {
+    width: 100%;
+    min-width: 200px;
+  }
+
+  #left-panel {
+    width: 100%;
+    min-width: 200px;
+  }
+
+  .logo {
+    width: 30px;
+    height: auto;
+    display: inline;
+  }
+
+  a {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    color: #ac2925;
+    padding-top: 0px;
+  }
+
+  #lastdiv {
+    padding-top: 10px;
+  }
+}
+
+

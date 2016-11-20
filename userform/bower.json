@@ -1,0 +1,25 @@
+{
+  "name": "userform",
+  "description": "",
+  "main": "index.ejs",
+  "authors": [
+    "Malvin Guo"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "node.js"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bootstrap": "^3.3.7",
+    "angular": "^1.5.8"
+  }
+}

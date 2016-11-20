@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src = "bower_components/angular/angular.min.js"></script>
+    <script src = "/javascripts/userCtrl.js"></script>
+    <link rel = 'stylesheet' href = 'bower_components/bootstrap/dist/css/bootstrap.min.css' />
+    <link rel = 'stylesheet' href = 'bower_components/bootstrap/dist/css/bootstrap-theme.min.css' />
+    <link rel = 'stylesheet' href = '/stylesheets/userStyle.css' />
+  </head>
+  <body ng-app = "app">
+    <div class = "container padding-top-5" ng-controller = "userCtrl">
+      <div id = "left-panel">
+        <img src = "/images/logo.jpg" class = "logo" />
+        <a href = "/login">Already a member? Login here.</a>
+      </div>
+      <div class = "panel panel-default" id = "right-panel">
+        <div class = "panel-heading">
+          <%= title %>
+        </div>
+        <div class = "panel-body">
+          <form name = "regForm" ng-submit = "submit(user)" novalidate>
+            <div ng-show = "edit">
+              <div class = "form-group">
+                <label for = "username" class = "control-label">Username:</label>
+                <div class = "row">
+                  <div class = "col-md-12">
+                    <input type = "text" class = "form-control" name ="username" id = "username" ng-model = "user.Username" ng-blur = "check(user.Username)" placeholder="Username" required />
+                  </div>
+                </div>
+                <span class = "errormsg" ng-show="regForm.username.$touched && regForm.username.$invalid">
+                  <span ng-show="regForm.username.$error.required">Username is required.</span>
+                </span>
+                <span class = "errormsg" ng-show="invalidUsername">
+                  Username is not available, please change to another one.
+                </span>
+              </div>
+              <div class = "form-group">
+                <label for = "password" class = "control-label">Password:</label>
+                <div class = "row">
+                  <div class = "col-md-12">
+                    <input type = "password" class = "form-control" name ="password" id = "password" ng-model = "user.Password" placeholder="Password" required />
+                  </div>
+                </div>
+                <span class = "errormsg" ng-show="regForm.password.$touched && regForm.password.$invalid">
+                  <span ng-show="regForm.password.$error.required">Password is required.</span>
+                </span>
+                <div class = "row">
+                  <div class = "col-md-12 padding-top-10">
+                    <input type = "password" class = "form-control" name ="repassword" id = "repassword" ng-model = "repassword" placeholder="Confirm Password" required compare-to="user.Password" />
+                  </div>
+                </div>
+                <span class = "errormsg" ng-show="regForm.repassword.$touched && regForm.repassword.$invalid">
+                  <span ng-show="regForm.repassword.$error.required">Confirm password is required. </span>
+                  <span ng-show="regForm.repassword.$error.compareTo">Password should match previous.</span>
+                </span>
+              </div>
+              <div class = "row padding-top-5">
+                <div class = "col-md-6">
+                  <button type = "button" class = "btn btn-info" ng-click="nextStep()" ng-disabled="regForm.username.$invalid || regForm.password.$invalid || regForm.repassword.$invalid || invalidUsername">Next</button>
+                </div>
+              </div>
+            </div>
+            <div ng-hide = "edit">
+              <div class = "form-group">
+                <label for = "first" class = "control-label">Name:</label>
+                <div class = "row">
+                  <div class = "col-md-6">
+                    <input type = "text" class = "form-control" name ="first" id = "first" ng-model = "user.First" placeholder="First Name" required />
+                  </div>
+                  <div class = "col-md-6" id = "lastdiv">
+                    <input type = "text" class = "form-control" name ="last" id = "last" ng-model = "user.Last" placeholder="Last Name" required />
+                  </div>
+                </div>
+                <span class = "errormsg" ng-show="(regForm.first.$touched && regForm.first.$invalid) || (regForm.last.$touched && regForm.last.$invalid)">
+                  <span ng-show="regForm.first.$error.required || regForm.last.$error.required">Name is required.</span>
+                </span>
+              </div>
+              <div class = "form-group">
+                <label for = "address" class = "control-label">Address:</label>
+                <div class = "row">
+                  <div class = "col-md-12">
+                    <input type = "text" class = "form-control" name ="address" id = "address" ng-model = "user.Address" placeholder="Address" required />
+                  </div>
+                </div>
+                <span class = "errormsg" ng-show="regForm.address.$touched && regForm.address.$invalid">
+                  <span ng-show="regForm.address.$error.required">Address is required.</span>
+                </span>
+                <div class = "row">
+                  <div class = "col-md-5">
+                    <label for = "city" class = "control-label padding-top-10">City:</label>
+                    <input type = "text" class = "form-control padding-top-10" name ="city" id = "city" ng-model = "user.City" placeholder="Your City" required />
+                  </div>
+                  <div class = "col-md-4">
+                    <label for = "state" class = "control-label padding-top-10">State:</label>
+                    <input type = "text" class = "form-control padding-top-10" name ="state" id = "state" ng-model = "user.State" placeholder="State" required />
+                  </div>
+                  <div class = "col-md-3">
+                    <label for = "zip" class = "control-label padding-top-10">Zip:</label>
+                    <input type = "text" class = "form-control padding-top-10" name ="zip" id = "zip" ng-model = "user.Zip" placeholder="Zip" required />
+                  </div>
+                </div>
+                <span class = "errormsg" ng-show="(regForm.city.$touched && regForm.city.$invalid) || (regForm.state.$touched && regForm.state.$invalid) || (regForm.zip.$touched && regForm.zip.$invalid)">
+                  <span ng-show="regForm.city.$error.required || regForm.state.$error.required || regForm.zip.$error.required">City, state and zip code are required.</span>
+                </span>
+              </div>
+              <div class = "form-group">
+                <label class = "control-label">Phone:</label>
+                <div class = "row">
+                  <div class = "col-md-6">
+                    <input type = "text" class = "form-control" name ="phone" id = "phone" ng-model = "user.Phone" placeholder="Your Phone Number" required />
+                  </div>
+                </div>
+                <span class = "errormsg" ng-show="regForm.phone.$touched && regForm.phone.$invalid">
+                  <span ng-show="regForm.phone.$error.required">Phone is required.</span>
+                </span>
+              </div>
+              <div class = "row padding-top-5">
+                <div class = "col-md-6">
+                  <button type = "button" class = "btn btn-info" ng-click="preStep()">Previous</button>
+                </div>
+                <div class = "col-md-6">
+                  <button type = "submit" class = "btn btn-success" ng-disabled="regForm.first.$invalid || regForm.last.$invalid || regForm.address.$invalid || regForm.city.$invalid || regForm.state.$invalid || regForm.zip.$invalid || regForm.phone.$invalid">Submit</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

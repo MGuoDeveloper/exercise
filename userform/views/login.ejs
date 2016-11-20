@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src = "bower_components/angular/angular.min.js"></script>
+    <script src = "/javascripts/loginCtrl.js"></script>
+    <link rel = 'stylesheet' href = 'bower_components/bootstrap/dist/css/bootstrap.min.css' />
+    <link rel = 'stylesheet' href = 'bower_components/bootstrap/dist/css/bootstrap-theme.min.css' />
+    <link rel = 'stylesheet' href = '/stylesheets/userStyle.css' />
+</head>
+<body ng-app = "loginApp">
+<div class = "container padding-top-5" ng-controller = "loginCtrl">
+    <div id = "left-panel">
+        <img src = "/images/logo.jpg" class = "logo" />
+        <a href = "/">Not a member? Sign up here.</a>
+    </div>
+    <div class = "panel panel-default" id = "right-panel">
+        <div class = "panel-heading">
+            <%= title %>
+        </div>
+        <div class = "panel-body">
+            <form name = "loginForm" ng-submit = "login(user)" novalidate>
+                <label for = "username" class = "control-label">Username:</label>
+                <div class = "row">
+                    <div class = "col-md-12">
+                        <input type = "text" class = "form-control" ng-model = "user.Username" placeholder="Username" />
+                    </div>
+                </div>
+                <label for = "password" class = "control-label padding-top-10">Password:</label>
+                <div class = "row">
+                    <div class = "col-md-12">
+                        <input type = "password" class = "form-control" ng-model = "user.Password" placeholder="Password" />
+                    </div>
+                </div>
+                <div class = "row padding-top-5">
+                    <div class = "col-md-6">
+                        <button type = "submit" class = "btn btn-success">Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
